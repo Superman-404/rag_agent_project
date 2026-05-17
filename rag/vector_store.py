@@ -19,7 +19,7 @@ class VectorStoreService:
     def __init__(self):
         self.vector_store = Chroma(
             collection_name=chroma_conf["collection_name"],
-            persist_directory=chroma_conf["persist_directory"],  # persist_directory: 数据库文件存放目录
+            persist_directory=get_asb_path(chroma_conf["persist_directory"]),  # persist_directory: 数据库文件存放目录
             embedding_function=embedding_model
         )
 
@@ -104,4 +104,4 @@ if __name__ == '__main__':
     res = retriever.invoke("迷路")
     for r in res:
         print(r.page_content)
-        print("*"*20)
+        print("*" * 20)
